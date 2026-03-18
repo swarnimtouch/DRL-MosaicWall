@@ -230,10 +230,16 @@
 <body>
 
 <div class="container">
+
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8 col-sm-10">
             <div class="card form-card">
-
+                @if(session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                @endif
                 <div class="form-logo-container">
                     <img src="{{asset('DrR_Logo_Secondary_RGB.png')}}" alt="Company Logo">
                 </div>
