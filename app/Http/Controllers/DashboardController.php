@@ -21,7 +21,7 @@ class DashboardController extends Controller
             ->when($request->search, function ($q) use ($request) {
                 $q->where('name', 'like', '%' . $request->search . '%');
             })
-            ->paginate(10); // 👈 important
+            ->paginate(10); 
         return view('admin.doctors', compact('doctors'));
     }
     public function destroy($id)

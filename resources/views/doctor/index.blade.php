@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Registration Form</title>
+    <title>DRL-MosaicWal||Employee Registration Form</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* --- Premium Blue Theme Colors --- */
         :root {
             --premium-blue: #1a73e8;
             --premium-blue-hover: #1557b0;
@@ -39,7 +38,6 @@
             width: 100%;
         }
 
-        /* --- Logo Styling --- */
         .form-logo-container {
             text-align: center;
             margin-bottom: 15px;
@@ -68,7 +66,6 @@
             border-color: var(--border-blue);
         }
 
-        /* --- Updated Upload Photo Area --- */
         .upload-photo-label {
             text-transform: uppercase;
             font-size: 14px;
@@ -88,7 +85,7 @@
             transition: background-color 0.2s, border-color 0.2s;
             position: relative;
             overflow: hidden;
-            min-height: 200px; /* Thodi height set ki hai taaki preview acha dikhe */
+            min-height: 200px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -141,7 +138,6 @@
             background-color: #ffffff; /* White bg behind photo */
         }
 
-        /* --- File Name Display --- */
         .file-name-display {
             position: absolute;
             bottom: 0;
@@ -159,7 +155,6 @@
             text-overflow: ellipsis;
         }
 
-        /* --- Discard Button Styling --- */
         .btn-discard-photo {
             position: absolute;
             top: 10px;
@@ -170,7 +165,7 @@
             border-radius: 50%;
             width: 32px;
             height: 32px;
-            display: none; /* Hidden by default */
+            display: none;
             align-items: center;
             justify-content: center;
             cursor: pointer;
@@ -184,12 +179,10 @@
             transform: scale(1.1);
         }
 
-        /* --- Preview State Logic --- */
         .hide-on-preview {
             display: block;
         }
 
-        /* Jab 'has-photo' class container par aayegi tab ye rules apply honge */
         .photo-upload-container.has-photo .hide-on-preview {
             display: none;
         }
@@ -203,7 +196,7 @@
             display: flex;
         }
 
-        /* --- Buttons & Errors --- */
+
         .btn-submit {
             background-color: var(--premium-blue);
             border: none;
@@ -257,7 +250,7 @@
                     <div class="mb-3 position-relative">
                         <label for="empId" class="form-label"> ID</label>
                         <input type="text" class="form-control" id="empId" name="emp_id" placeholder="Enter Emp Id"        oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                        
+
                     </div>
 
                     <div class="mb-3 position-relative">
@@ -304,7 +297,6 @@
         const $previewImage = $('#photoPreview');
         const $fileNameDisplay = $('#fileNameDisplay');
 
-        // Live Image Preview Logic
         $empPhotoInput.on('change', function() {
             const file = this.files[0];
 
@@ -316,7 +308,6 @@
                     $fileNameDisplay.text(file.name); // Set actual file name
                     $previewContainer.addClass('has-photo');
 
-                    // Valid hone par invalid classes hata dena
                     $previewContainer.removeClass('is-invalid-box');
                     $empPhotoInput.removeClass('is-invalid').addClass('is-valid');
                     $('#empPhoto-error').hide();
@@ -327,18 +318,15 @@
             }
         });
 
-        // Discard Photo Logic
         $('#discardPhotoBtn').on('click', function(e) {
             e.preventDefault();
-            e.stopPropagation(); // Ye click event ko bubble hone se rokega
+            e.stopPropagation();
 
             resetPhotoUploader();
 
-            // Discard karne par dobara validation trigger kar dena
             $('#employeeForm').validate().element("#empPhoto");
         });
 
-        // Helper function to reset the photo uploader
         function resetPhotoUploader() {
             $empPhotoInput.val('');
             $previewContainer.removeClass('has-photo');
@@ -347,28 +335,26 @@
             $empPhotoInput.removeClass('is-valid');
         }
 
-        // Custom method for file size validation
         $.validator.addMethod('filesize', function (value, element, param) {
             return this.optional(element) || (element.files[0].size <= param * 1024 * 1024);
         }, 'File size must be less than {0} MB');
 
-        // Initialize JQuery Validate
         $('#employeeForm').validate({
-            ignore: [], // Don't ignore hidden fields
+            ignore: [],
             rules: {
-                name: {           // name="name"
+                name: {
                     required: true,
                     minlength: 3
                 },
-                emp_id: {         // name="emp_id"
+                emp_id: {
                     required: true,
-                    digits: true   // sirf numbers allow karega
+                    digits: true
                 },
-                hq: {             // name="hq"
+                hq: {
                     required: true,
                     minlength: 2
                 },
-                photo: {          // name="photo"
+                photo: {
                     required: true,
                     extension: "jpg|jpeg|png",
                     filesize: 2

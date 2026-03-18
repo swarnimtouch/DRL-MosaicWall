@@ -17,7 +17,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 
-// Doctor resource routes - protected
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
