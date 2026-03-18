@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Doctor;
 use Illuminate\Http\Request;
+use App\Exports\DoctorExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardController extends Controller
 {
@@ -31,5 +33,12 @@ class DashboardController extends Controller
 
         return redirect()->route('admin.doctors.index')
             ->with('success', 'Doctor deleted successfully');
+    }
+    public function export(Request $request)
+    {
+        return Excel::download(
+            new DoctorExport($request->search),
+            'doctors_' . now()->format('Ymd_His') . '.xlsx'
+        );
     }
 }

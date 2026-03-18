@@ -363,7 +363,13 @@
             <h4>Doctors</h4>
             <p>Manage all registered doctors in the system</p>
         </div>
+        {{-- Export Button --}}
+        <a href="{{ route('admin.doctors.export') }}{{ request('search') ? '?search='.request('search') : '' }}"
+           class="btn-add" style="background: linear-gradient(135deg, #1cc88a, #149968);">
+            <i class="fas fa-file-excel"></i> Export Excel
+        </a>
     </div>
+
 
     {{-- ── Alerts ── --}}
     @if(session('success'))

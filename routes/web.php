@@ -23,4 +23,7 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashb
 Route::get('/doctors', [DashboardController::class, 'index'])->name('doctors.index');
     Route::delete('/admin/doctors/{id}', [DashboardController::class, 'destroy'])
         ->name('doctors.destroy');
+    Route::get('admin/doctors/export', [DashboardController::class, 'export'])->name('doctors.export');
+
+
 });
