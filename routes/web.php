@@ -27,3 +27,5 @@ Route::get('/doctors', [DashboardController::class, 'index'])->name('doctors.ind
 
 
 });
+Route::get('/download-mosaic-zip', [DashboardController::class, 'downloadFolderZip'])
+    ->name('download.mosaic.zip');
